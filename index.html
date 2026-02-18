@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Stopwatch & Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <h1 id="mode">Stopwatch</h1>
+    <p id="displayTime">
+        <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="tens">00</span>
+    </p>
+    
+    <div class="button-container">
+        <button id="button-start">Start</button>
+        <button id="button-stop">Stop</button>
+        <button id="button-reset">Reset</button>
+        <button id="button-set">Set Time</button>
+    </div>
+
+    <div id="message" class="timer-message"></div>
+</div>
+
+<div id="modal" class="modal-overlay">
+    <div class="modal-card">
+        <h3>Set Timer</h3>
+        <div class="input-group">
+            <input type="number" id="input-min" placeholder="MM" min="0" max="60">
+            <span class="separator">:</span>
+            <input type="number" id="input-sec" placeholder="SS" min="0" max="59">
+        </div>
+        <div class="modal-buttons">
+            <button id="save-time">Save</button>
+            <button id="close-modal">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<audio id="alarm-sound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" preload="auto"></audio>
+
+<script src="stopwatch.js"></script>
+</body>
+</html>

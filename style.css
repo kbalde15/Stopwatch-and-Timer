@@ -1,0 +1,202 @@
+/* --- Imports & Variables --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+Mono:wght@500&display=swap');
+
+:root {
+  --bg-color: #0f0e17;
+  --card-bg: #1e1e2e;
+  --accent: #bcb5ff;
+  --accent-hover: #8f86eb;
+  --text: #ddd9fc;
+  --danger: #ff8585;
+}
+
+/* --- Base Layout --- */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden; /* Prevents scrollbars during modal use */
+}
+
+/* --- Main Stopwatch Card --- */
+.wrapper {
+  background: var(--card-bg);
+  padding: 3rem;
+  border-radius: 2.5rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(188, 181, 255, 0.1);
+  text-align: center;
+  width: 90%;
+  max-width: 480px;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  color: var(--accent);
+  margin-bottom: 0;
+  opacity: 0.7;
+}
+
+/* --- Time Display --- */
+#displayTime {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 4.5rem;
+  font-weight: 500;
+  background: linear-gradient(to bottom, #ffffff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 1.5rem 0;
+  display: block;
+}
+
+/* --- Buttons --- */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+button {
+  background-color: rgba(188, 181, 255, 0.05);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 14px;
+  padding: 14px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 100px;
+}
+
+button:hover {
+  background-color: var(--accent);
+  color: var(--bg-color);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(188, 181, 255, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+#button-reset {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+#button-reset:hover {
+  background-color: var(--danger);
+  color: white;
+}
+
+/* --- Status Message --- */
+.timer-message {
+  margin-top: 2rem;
+  font-weight: 700;
+  height: 30px; /* Space reserved even when empty */
+  color: #f1c40f; 
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+/* --- MODAL DIALOG SYSTEM --- */
+.modal-overlay {
+  display: none; /* Controlled by JS: use 'flex' to show */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 14, 23, 0.85); /* Dark tint */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  z-index: 9999; /* Always on top */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-card {
+  background: var(--card-bg);
+  padding: 2.5rem;
+  border-radius: 2.5rem;
+  border: 1px solid rgba(188, 181, 255, 0.2);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+  width: 85%;
+  max-width: 360px;
+  text-align: center;
+  animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-card h3 {
+  margin-top: 0;
+  color: var(--accent);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+}
+
+/* --- Modal Inputs --- */
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 2rem 0;
+}
+
+.modal-card input {
+  font-family: 'Noto Sans Mono', monospace;
+  width: 80px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(188, 181, 255, 0.2);
+  border-radius: 12px;
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.modal-card input:focus {
+  border-color: var(--accent);
+  background: rgba(188, 181, 255, 0.08);
+}
+
+/* Chrome/Safari/Edge hide arrows */
+.modal-card input::-webkit-outer-spin-button,
+.modal-card input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.separator {
+  font-size: 2rem;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-buttons button {
+  flex: 1;
+}
